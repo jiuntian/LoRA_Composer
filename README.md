@@ -1,6 +1,6 @@
 # LoRA-Composer
 
-**[LoRA-Composer: Leveraging Low-Rank Adaptation for Multi-Concept Customization in Training-Free Diffusion Models](https://arxiv.org/abs/2305.18292)**
+**[LoRA-Composer: Leveraging Low-Rank Adaptation for Multi-Concept Customization in Training-Free Diffusion Models](https://arxiv.org/abs/2403.11627)**
 <br/>
 [Yang Yang](https://young98cn.github.io/), [Wen Wang](https://github.com/encounter1997), Liang Peng, Chaotian Song, Yao Chen, Hengjia Li, Xiaolong Yang, Qinglin Lu, Deng Cai, Wei Liu, Boxi Wu
 <br/>
@@ -10,7 +10,31 @@
 
 ## 🚩 Updates
 
+![overview](assets/method.png)
+
+## Highlights
+![real_multi_result](./assets/main_fig.png)
+
+## 📋 Results
+
+### Multi-Concept Sample Results
+![real_multi_result](./assets/more_res.png)
+------
+
+### Multi-Concept Sample Results(with image-based condition)
+
+![real_multi_result](./assets/condition_comparison.png)
+
+------
+
+## 🚩 Updates/Todo List
+
+- [x] Memory optimization in [optimized_branch](https://github.com/Young98CN/LoRA_Composer/tree/optimized_version)  (There is a lot of GPU memory redundancy in the existing code, and N concept LoRAs need to store N pipelines).
+- [x] Code Released.
+
+=======
 This branch optimizes GPU memory usage (peaking at 39GB, compared to the 56GB peak in the main branch). However, the results show slight differences compared to the main branch.
+
 
 ## :wrench: Dependencies and Installation
 
@@ -39,6 +63,7 @@ cd LoRA_Composer
 pip install .
 
 # Install diffusers==0.14.0 with T2I-Adapter support(install from source)
+git clone -b T2IAdapter-for-mixofshow https://github.com/guyuchao/diffusers-t2i-adapter.git
 cd diffusers-t2i-adapter
 pip install .
 ```
@@ -53,14 +78,14 @@ We adopt the [ChilloutMix](https://huggingface.co/windwhinny/chilloutmix) for re
 
 ```bash
 cd experiments/pretrained_models
-# Make sure you have git-lfs installed
-git lfs install
-
 # Diffusers-version ChilloutMix
 git lfs clone https://huggingface.co/windwhinny/chilloutmix.git
 
 # Diffusers-version Anything-v4
 git lfs clone https://huggingface.co/xyn-ai/anything-v4.0.git --exclude="anything*, Anything*, example*, *.safetensors"
+
+=======
+
 mkdir t2i_adapter
 cd t2i_adapter
 
