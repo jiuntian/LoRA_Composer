@@ -8,6 +8,7 @@
 [![Project Website](https://img.shields.io/badge/Project-Website-orange)](https://young98cn.github.io/lora_composer_page/)[![arXiv](https://img.shields.io/badge/arXiv-2403.11627-b31b1b)](https://arxiv.org/abs/2403.11627)
 
 
+## 🚩 Updates
 
 ![overview](assets/method.png)
 
@@ -31,6 +32,8 @@
 - [x] Memory optimization in [optimized_branch](https://github.com/Young98CN/LoRA_Composer/tree/optimized_version)  (There is a lot of GPU memory redundancy in the existing code, and N concept LoRAs need to store N pipelines).
 - [x] Code Released.
 
+=======
+This branch optimizes GPU memory usage (peaking at 39GB, compared to the 56GB peak in the main branch). However, the results show slight differences compared to the main branch.
 
 
 ## :wrench: Dependencies and Installation
@@ -38,7 +41,7 @@
 - Python >= 3.9 (Recommend to use [Anaconda](https://www.anaconda.com/download/#linux) or [Miniconda](https://docs.conda.io/en/latest/miniconda.html))
 - Diffusers==0.14.0
 - [PyTorch >= 1.12](https://pytorch.org/)
-- NVIDIA GPU (60G memory) + [CUDA](https://developer.nvidia.com/cuda-downloads)
+- NVIDIA GPU (40G memory) + [CUDA](https://developer.nvidia.com/cuda-downloads)
 
 ### Installation
 
@@ -80,6 +83,8 @@ git lfs clone https://huggingface.co/windwhinny/chilloutmix.git
 
 # Diffusers-version Anything-v4
 git lfs clone https://huggingface.co/xyn-ai/anything-v4.0.git --exclude="anything*, Anything*, example*, *.safetensors"
+
+=======
 
 mkdir t2i_adapter
 cd t2i_adapter
@@ -137,11 +142,9 @@ LoRA_Composer
 
 
 ## :runner: Some instances in the paper
-1. Merge the LoRA with the base model
+1. Distributing LoRAs for different experiments
 ```bash
 # in the path of root folder
-find scripts/lora_composer_scripts/merge_EDLoRA -type f -name "*.sh" -exec echo "Executing {}" \; -exec bash {} \;
-
 python scripts/lora_composer_scripts/merge_EDLoRA/link_lora2folder.py
 ```
 2. Partial results of the paper can be obtained by running the following command
